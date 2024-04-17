@@ -1,0 +1,16 @@
+plugin:
+    name: 'timetracker.tracker::lang.plugin.name'
+    description: 'timetracker.tracker::lang.plugin.description'
+    author: timetracker
+    icon: oc-icon-clock-o
+    homepage: ''
+navigation:
+    main-menu:
+        label: Tracker
+        url: timetracker/tracker/tracker
+        icon: icon-clock-o
+        sideMenu:
+            side-menu-item:
+                label: 'Tracking entries'
+                url: timetracker/tracker/tracker
+                icon: icon-list

@@ -1,0 +1,31 @@
+url = "/profile"
+layout = "default"
+title = "profile"
+
+[account]
+paramCode = "code"
+forceSecure = 0
+requirePassword = 0
+
+[session]
+security = "user"
+redirect = "index"
+checkToken = 0
+==
+
+<div class="container mt-5 pt-4">
+    <div class="row mt-5">
+        <div class="col-12 col-lg-4 mx-auto">
+            <h1 class="h3 fw-semibold">Profile</h1>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12 col-lg-4 mx-auto">
+            <main class="form-signin w-100 m-auto">
+                {% partial 'user/update' %}
+                {% partial 'user/deactivate_link' %}
+            </main>
+        </div>
+    </div>
+</div>
+

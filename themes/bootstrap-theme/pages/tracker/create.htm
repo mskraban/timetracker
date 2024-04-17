@@ -1,0 +1,176 @@
+url = "/create"
+layout = "default"
+title = "create"
+meta_title = "Create"
+
+[session]
+security = "user"
+redirect = "index"
+checkToken = 0
+
+[TrackerForm]
+==
+<div class="container-md">
+    <div class="py-5 my-5">
+        <h1 class="h2 fw-semibold">Tracker create</h1>
+        <p>Fill only one schedule, randomized or fixed. Empty schedule will be ignored.</p>
+              <form data-request="onSave">
+             <div class="row mt-5 mb-3">
+                 <div class="col-4 pointer-events-disabled opacity-75">
+                     <h2 class="h5 fw-semibold">Randomized schedule (coming soon)</h2>
+                     <div class="row">
+                         <div class="col-6">
+                             <input
+                                 name="tracker_id"
+                                 value="{{ user.id }}"
+                                 readonly
+                                 hidden
+                             />
+                             <input
+                                 name="user_id"
+                                 type="text"
+                                 value="{{ user.id }}"
+                                 readonly
+                                 hidden
+                             />
+                             <div class="form-floating mb-2">
+                                 <input
+                                     name="workday_start_min"
+                                     type="time"
+                                     class="form-control"
+                                     id="workday_start_min"
+                                     placeholder="{{ record.workday_start_min }}"
+                                     value="{{ record.workday_start_min }}"
+                                     disabled
+                                 />
+                                 <label for="workday_start_min">Clock in min</label>
+                             </div>
+                             <div class="form-floating mb-2">
+                                 <input
+                                     name="workday_lunch_start_min"
+                                     type="time"
+                                     class="form-control"
+                                     id="workday_lunch_start_min"
+                                     placeholder="{{ record.workday_lunch_start_min }}"
+                                     value="{{ record.workday_lunch_start_min }}"
+                                     disabled
+                                 />
+                                 <label for="workday_lunch_start_min">Lunch start min</label>
+                             </div>
+                             <div class="form-floating mb-2">
+                                 <input
+                                     name="workday_lunch_end_min"
+                                     type="time"
+                                     class="form-control"
+                                     id="workday_lunch_end_min"
+                                     placeholder="{{ record.workday_lunch_end_min }}"
+                                     value="{{ record.workday_lunch_end_min }}"
+                                     disabled
+                                 />
+                                 <label for="workday_lunch_end_min">Lunch end min</label>
+                             </div>
+                         </div>
+                         <div class="col-6">
+                             <div class="form-floating mb-2">
+                                 <input
+                                     name="workday_start_max"
+                                     type="time"
+                                     class="form-control"
+                                     id="workday_start_max"
+                                     placeholder="{{ record.workday_start_max }}"
+                                     value="{{ record.workday_start_max }}"
+                                     disabled
+                                 />
+                                 <label for="workday_start">Clock in max</label>
+                             </div>
+                             <div class="form-floating mb-2">
+                                 <input
+                                     name="workday_lunch_start_max"
+                                     type="time"
+                                     class="form-control"
+                                     id="workday_lunch_start_max"
+                                     placeholder="{{ record.workday_lunch_start_max }}"
+                                     value="{{ record.workday_lunch_start_max }}"
+                                     disabled
+                                 />
+                                 <label for="workday_lunch_start">Lunch start max</label>
+                             </div>
+                             <div class="form-floating mb-2">
+                                 <input
+                                     name="workday_lunch_end_max"
+                                     type="time"
+                                     class="form-control"
+                                     id="workday_lunch_end_max"
+                                     placeholder="{{ record.workday_lunch_end_max }}"
+                                     value="{{ record.workday_lunch_end_max }}"
+                                     disabled
+                                 />
+                                 <label for="workday_lunch_end_max">Lunch end max</label>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-4 offset-1">
+                     <h2 class="h5 fw-semibold">Fixed schedule</h2>
+                     <div class="form-floating mb-2">
+                         <input
+                             name="workday_start"
+                             type="time"
+                             class="form-control"
+                             id="workday_start"
+                             placeholder="{{ record.workday_start }}"
+                             value="{{ record.workday_start }}"
+                         />
+                         <label for="workday_start">Clock in</label>
+                     </div>
+                     <div class="form-floating mb-2">
+                         <input
+                             name="workday_lunch_start"
+                             type="time"
+                             class="form-control"
+                             id="workday_lunch_start"
+                             placeholder="{{ record.workday_lunch_start }}"
+                             value="{{ record.workday_lunch_start }}"
+                         />
+                         <label for="workday_lunch_start">Lunch start</label>
+                     </div>
+                     <div class="form-floating mb-2">
+                         <input
+                             name="workday_lunch_end"
+                             type="time"
+                             class="form-control"
+                             id="workday_lunch_end"
+                             placeholder="{{ record.workday_lunch_end }}"
+                             value="{{ record.workday_lunch_end }}"
+                         />
+                         <label for="workday_lunch_end">Lunch end</label>
+                     </div>
+                 </div>
+             </div>
+                  <div class="form-check form-switch">
+                      <input class="form-check-input"
+                             type="checkbox"
+                             role="switch"
+                             id="flexSwitchCheckChecked"
+                             value="0"
+                             onclick='handleClick(this);'
+                             checked
+                      >
+                      <input type="hidden" name="active" id="switchValue" value="1">
+                      <label class="form-check-label" for="flexSwitchCheckChecked">Activate schedule</label>
+                  </div>
+                  <button class="btn btn-primary mt-4" type="submit">Submit</button>
+         </form>
+
+            {% flash success %}
+            {% endflash %}
+    </div>
+</div>
+
+<script>
+    function handleClick(checkbox) {
+        checkbox.value = checkbox.checked ? 1 : 0;
+        checkbox.checked = checkbox.checked ? 1 : 0;
+        document.getElementById('switchValue').value = checkbox.checked ? 1 : 0;
+    }
+</script>

@@ -1,0 +1,94 @@
+url = "/"
+layout = "default"
+title = "Index"
+meta_title = "Homepage"
+
+[builderList]
+modelClass = "Timetracker\Tracker\Models\Tracker"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "id"
+noRecordsMessage = "No records found"
+detailsPage = "tracker/create"
+detailsKeyColumn = "id"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+==
+{% if user %}
+<div class="container-md">
+  <div class="py-5 my-5">
+    <h1 class="h2 fw-semibold">Dashboard</h1>
+    <script>
+    const options = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    authorization: 'Basic ZjllMWFlMzVlYjcwYTg5M2ViMWU0YjBiYTY2ZTM3OGQ0ZWVlZDI5ZTo='
+  }
+};
+
+fetch('https://api.bamboohr.com/api/gateway.php/flaviar/v1/time_tracking/timesheet_entries?start=2024-04-01&end=2024-04-05&employeeIds=271', options)
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err));
+    </script>
+
+      <div class="list-group mt-4">
+          <a href="{{ 'tracker/tracker-list'|page }}" class="list-group-item list-group-item-action align-items-center d-flex gap-3 py-3" aria-current="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list-task flex-shrink-0" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM3 3H2v1h1z"/>
+                  <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1z"/>
+                  <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5zM2 7h1v1H2zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm1 .5H2v1h1z"/>
+              </svg>
+              <div class="d-flex gap-2 w-100 justify-content-between">
+                  <div>
+                      <h6 class="mb-0">Tracking list</h6>
+                      <p class="mb-0 opacity-75">List of all clock-in's and clock-out's set to be executed.</p>
+                  </div>
+              </div>
+          </a>
+          <a href="{{ 'tracker/create'|page }}" class="list-group-item list-group-item-action align-items-center d-flex gap-3 py-3" aria-current="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-hourglass" viewBox="0 0 16 16">
+                  <path d="M2 1.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1-.5-.5m2.5.5v1a3.5 3.5 0 0 0 1.989 3.158c.533.256 1.011.791 1.011 1.491v.702c0 .7-.478 1.235-1.011 1.491A3.5 3.5 0 0 0 4.5 13v1h7v-1a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351v-.702c0-.7.478-1.235 1.011-1.491A3.5 3.5 0 0 0 11.5 3V2z"/>
+              </svg>
+              <div class="d-flex gap-2 w-100 justify-content-between">
+                  <div>
+                      <h6 class="mb-0">Create tracker</h6>
+                      <p class="mb-0 opacity-75">Setup randomized or fixed clock-in, lunch schedule</p>
+                  </div>
+              </div>
+          </a>
+          <a href="{{ 'profile'|page }}" class="list-group-item list-group-item-action align-items-center d-flex gap-3 py-3" aria-current="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-gear flex-shrink-0" viewBox="0 0 16 16">
+                  <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m.256 7a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1zm3.63-4.54c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.045c-.613-.18-.613-1.048 0-1.229l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382zM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0"/>
+              </svg>
+              <div class="d-flex gap-2 w-100 justify-content-between">
+                  <div>
+                      <h6 class="mb-0">Profile</h6>
+                      <p class="mb-0 opacity-75">Customize your experience in the profile settings</p>
+                  </div>
+              </div>
+          </a>
+      </div>
+
+      <p class="mt-4" style="font-size:14px">
+          Cronjob runs every minute between 7:00 and 18:00.<br>
+          Clock-out will be automatically calculated from the remaining time.</p>
+
+  </div>
+ </div>
+
+{% else %}
+    <div class="container-md vh-100 d-flex align-center">
+        <div class="px-4 py-5 mb-5 text-center d-flex flex-column justify-content-center">
+            <h1 class="display-5 fw-bold">Time tracker</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Supercharge your time tracking with our automated app, perfect for those looking to ditch the traditional clock-in, clock-out routine and boost productivity effortlessly.</p>
+                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                    <a href="{{ 'register'|page }}" class="btn btn-primary btn-md px-4 gap-3">Sign up</a>
+                    <a href="{{ 'user-login'|page }}" class="btn btn-outline-secondary btn-md px-4">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

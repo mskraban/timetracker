@@ -1,0 +1,24 @@
+[session]
+security = "all"
+checkToken = 0
+==
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    {% partial 'site/head-metadata' %}
+    {% partial 'site/head-scripts' %}
+  </head>
+  <body class="{{ 'page-'~this.page.id }} bg-body-secondary">
+
+{% if this.page.id not in ['user-login', 'register'] %}
+  {% partial 'site/header' %}
+{% endif %}
+
+{% partial 'site/flash-messages' %}
+
+     <section id="layout-content">
+            {% page %}
+        </section>
+        {% partial 'site/footer-scripts' %}
+  </body>
+</html>

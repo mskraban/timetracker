@@ -1,0 +1,84 @@
+tabs:
+    fields:
+        workday_start_min:
+            label: 'Workday start min'
+            mode: time
+            span: auto
+            type: datepicker
+            tab: 'Randomized schedule'
+        workday_start_max:
+            label: 'Workday start max'
+            mode: time
+            span: auto
+            type: datepicker
+            tab: 'Randomized schedule'
+        workday_lunch_start_min:
+            label: 'Workday lunch start min'
+            mode: time
+            span: auto
+            type: datepicker
+            tab: 'Randomized schedule'
+        workday_lunch_start_max:
+            label: 'Workday lunch start max'
+            mode: time
+            span: auto
+            type: datepicker
+            tab: 'Randomized schedule'
+        workday_lunch_end_min:
+            label: 'Workday lunch end min'
+            mode: time
+            span: auto
+            type: datepicker
+            tab: 'Randomized schedule'
+        workday_lunch_end_max:
+            label: 'Workday lunch end max'
+            mode: time
+            span: auto
+            type: datepicker
+            tab: 'Randomized schedule'
+        workday_start:
+            label: 'Workday start'
+            mode: time
+            span: full
+            type: datepicker
+            tab: 'Fixed schedule'
+        workday_lunch_start:
+            label: 'Workday lunch start'
+            mode: time
+            span: auto
+            type: datepicker
+            tab: 'Fixed schedule'
+        workday_lunch_end:
+            label: 'Workday lunch end'
+            span: auto
+            mode: time
+            type: datepicker
+            tab: 'Fixed schedule'
+fields:
+    created_at:
+        label: 'Created at'
+        mode: datetime
+        span: auto
+        disabled: 1
+        readOnly: 1
+        hidden: 1
+        type: datepicker
+    updated_at:
+        label: 'Updated at'
+        mode: datetime
+        span: auto
+        disabled: 1
+        readOnly: 1
+        hidden: 1
+        type: datepicker
+    tracker_id:
+        label: 'User ID'
+        nameFrom: id
+        descriptionFrom: 'User ID'
+        span: auto
+        type: relation
+    active:
+        label: 'Activate schedule'
+        span: auto
+        default: 1
+        type: checkbox

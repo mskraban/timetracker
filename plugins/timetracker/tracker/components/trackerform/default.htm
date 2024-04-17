@@ -1,0 +1,107 @@
+<form data-request="onSave">
+    <div class="row mt-5 mb-3">
+        <div class="col-4">
+            <h2 class="h5 fw-semibold">Randomized schedule</h2>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-floating mb-2">
+                        <input
+                            name="workday_start_min"
+                            type="text"
+                            class="form-control"
+                            id="workday_start_min"
+                            placeholder="{{ record.workday_start_min }}"
+                        />
+                        <label for="workday_start_min">Clock in min</label>
+                    </div>
+                    <div class="form-floating mb-2">
+                        <input
+                            name="workday_lunch_start_min"
+                            type="text"
+                            class="form-control"
+                            id="workday_lunch_start_min"
+                            placeholder="{{ record.workday_lunch_start_min }}"
+                        />
+                        <label for="workday_lunch_start_min">Lunch start min</label>
+                    </div>
+                    <div class="form-floating mb-2">
+                        <input
+                            name="workday_lunch_end_min"
+                            type="text"
+                            class="form-control"
+                            id="workday_lunch_end_min"
+                            placeholder="{{ record.workday_lunch_end_min }}"
+                        />
+                        <label for="workday_lunch_end_min">Lunch end min</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-floating mb-2">
+                        <input
+                            name="workday_start_max"
+                            type="text"
+                            class="form-control"
+                            id="workday_start_max"
+                            placeholder="{{ record.workday_start_max }}"
+                        />
+                        <label for="workday_start">Clock in max</label>
+                    </div>
+                    <div class="form-floating mb-2">
+                        <input
+                            name="workday_lunch_start_max"
+                            type="text"
+                            class="form-control"
+                            id="workday_lunch_start_max"
+                            placeholder="{{ record.workday_lunch_start_max }}"
+                        />
+                        <label for="workday_lunch_start">Lunch start max</label>
+                    </div>
+                    <div class="form-floating mb-2">
+                        <input
+                            name="workday_lunch_end_max"
+                            type="text"
+                            class="form-control"
+                            id="workday_lunch_end_max"
+                            placeholder="{{ record.workday_lunch_end_max }}"
+                        />
+                        <label for="workday_lunch_end_max">Lunch end max</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 offset-1">
+            <h2 class="h5 fw-semibold">Fixed schedule</h2>
+            <div class="form-floating mb-2">
+                <input
+                    name="workday_start"
+                    type="text"
+                    class="form-control"
+                    id="workday_start"
+                    placeholder="{{ record.workday_start }}"
+                />
+                <label for="workday_start">Clock in</label>
+            </div>
+            <div class="form-floating mb-2">
+                <input
+                    name="workday_lunch_start"
+                    type="text"
+                    class="form-control"
+                    id="workday_lunch_start"
+                    placeholder="{{ record.workday_lunch_start }}"
+                />
+                <label for="workday_lunch_start">Lunch start</label>
+            </div>
+            <div class="form-floating mb-2">
+                <input
+                    name="workday_lunch_end"
+                    type="text"
+                    class="form-control"
+                    id="workday_lunch_end"
+                    placeholder="{{ record.workday_lunch_end }}"
+                />
+                <label for="workday_lunch_end">Lunch end</label>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>

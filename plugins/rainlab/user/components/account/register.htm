@@ -1,0 +1,63 @@
+{% if canRegister %}
+    {{ form_ajax('onRegister') }}
+    <div class="icon d-flex justify-content-center mb-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle"
+             viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+            <path fill-rule="evenodd"
+                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+        </svg>
+    </div>
+
+    <h1 class="h4 mb-4 fw-semibold text-center">Sign up</h1>
+
+    <div class="form-floating mb-2">
+        <input
+            name="name"
+            type="text"
+            class="form-control"
+            id="registerName"
+            placeholder="Enter your full name"
+        />
+        <label for="registerName">Name</label>
+    </div>
+
+    <div class="form-floating mb-2">
+        <input
+            name="email"
+            type="email"
+            class="form-control"
+            id="registerEmail"
+            placeholder="Enter your email"
+        />
+        <label for="registerEmail">Email</label>
+    </div>
+
+    <div class="form-floating mb-2">
+        <input
+            name="username"
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="Enter your username"
+        >
+        <label for="floatingInput">Username</label>
+    </div>
+
+    <div class="form-floating mb-4">
+        <input
+            name="password"
+            type="password"
+            class="form-control"
+            id="floatingPassword"
+            placeholder="Choose a password"
+        >
+        <label for="floatingPassword">Password</label>
+    </div>
+    <button class="btn btn-primary w-100 py-2" type="submit">Sign up</button>
+    <p class="text-center mt-2">Already have an account? Login <a href="{{ 'user-login'|page }}">here</a></p>
+
+    {{ form_close() }}
+{% else %}
+    <!-- Registration is disabled. -->
+{% endif %}

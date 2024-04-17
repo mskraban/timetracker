@@ -1,0 +1,10 @@
+name: Tracker
+form: $/timetracker/tracker/models/tracker/fields.yaml
+modelClass: Timetracker\Tracker\Models\Tracker
+defaultRedirect: timetracker/tracker/tracker
+create:
+    redirect: 'timetracker/tracker/tracker/update/:id'
+    redirectClose: timetracker/tracker/tracker
+update:
+    redirect: timetracker/tracker/tracker
+    redirectClose: timetracker/tracker/tracker

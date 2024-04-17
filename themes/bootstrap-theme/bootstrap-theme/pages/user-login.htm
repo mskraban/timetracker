@@ -1,0 +1,30 @@
+url = "/login"
+layout = "default"
+title = "login"
+meta_title = "Login"
+
+[account]
+redirect = "index"
+paramCode = "code"
+activationPage = "user-login"
+forceSecure = 0
+requirePassword = 0
+
+[session]
+security = "guest"
+redirect = "index"
+checkToken = 0
+==
+{% if not user %}
+<div class="d-flex align-items-center min-vh-100">
+    <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-4 mx-auto">
+                    <main class="form-signin w-100 m-auto">
+                        {% partial account ~ '::signin' %}
+                    </main>
+                </div>
+            </div>
+        </div>
+</div>
+{% endif %}

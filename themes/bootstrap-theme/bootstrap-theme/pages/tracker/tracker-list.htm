@@ -1,0 +1,139 @@
+url = "/list"
+layout = "default"
+title = "list"
+meta_title = "List"
+
+[builderList]
+modelClass = "Timetracker\Tracker\Models\Tracker"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "id"
+noRecordsMessage = "No records found"
+detailsPage = "tracker/details"
+detailsKeyColumn = "id"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+
+[session]
+security = "user"
+redirect = "index"
+checkToken = 0
+==
+<div class="container-md">
+    <div class="py-5 my-5">
+        <h1 class="h2 fw-semibold">Tracker list</h1>
+
+        {% set records = builderList.records %}
+        {% set displayColumn = builderList.displayColumn %}
+        {% set noRecordsMessage = builderList.noRecordsMessage %}
+        {% set detailsPage = builderList.detailsPage %}
+        {% set detailsKeyColumn = builderList.detailsKeyColumn %}
+        {% set detailsUrlParameter = builderList.detailsUrlParameter %}
+        {% set displayedRecords = 0 %}
+        {% set activeTrackers = 0 %}
+
+        <table class="table table-responsive rounded overflow-hidden mt-4">
+            <thead>
+            <tr>
+                <th scope="col">Tracker ID</th>
+                <th scope="col">Created</th>
+                <th scope="col">Schedule type</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for record in records %}
+                {% if record.tracker_id[0].id == user.id %}
+                    {% if detailsPage %}
+                        <tr>
+                            <th scope="row" class="align-middle">{{ attribute(record, displayColumn) }}</th>
+                            <td class="align-middle">{{ record.created_at }}</td>
+                            <td class="align-middle">
+                                {% if record.workday_start %}
+                                    Fixed
+                                {% else %}
+                                    Randomized
+                                {% endif %}
+                            </td>
+                            <td class="align-middle">{% if record.active %}<span class="badge text-bg-success rounded-pill">Active</span>{% endif %}</td>
+                            <td class="align-middle">
+                                <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}" class="btn btn-primary btn-sm me-1">Edit</a>
+                            </td>
+                        </tr>
+
+
+                    {% endif %}
+                    {% set displayedRecords = displayedRecords + 1 %}
+                    {% if record.active %}{% set activeTrackers = activeTrackers + 1 %}{% endif %}
+                {% endif %}
+            {% else %}
+                <div>{{ noRecordsMessage }}</div>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+        {% if displayedRecords == 0 %}
+            You have no trackers created yet. To display tracking list create a tracker first.
+            <div class="list-group mt-4">
+                <a href="{{ 'tracker/create'|page }}" class="list-group-item list-group-item-action align-items-center d-flex gap-3 py-3" aria-current="true">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="32"
+                         height="32"
+                         fill="currentColor"
+                         class="bi bi-hourglass"
+                         viewBox="0 0 16 16"
+                    >
+                        <path d="M2 1.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1-.5-.5m2.5.5v1a3.5 3.5 0 0 0 1.989 3.158c.533.256 1.011.791 1.011 1.491v.702c0 .7-.478 1.235-1.011 1.491A3.5 3.5 0 0 0 4.5 13v1h7v-1a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351v-.702c0-.7.478-1.235 1.011-1.491A3.5 3.5 0 0 0 11.5 3V2z"/>
+                    </svg>
+                    <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                            <h6 class="mb-0">Create tracker</h6>
+                            <p class="mb-0 opacity-75">Setup randomized or fixed clock-in, lunch schedule</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% else %}
+            {% if activeTrackers > 1 %}
+                <div class="alert alert-primary d-flex align-items-center mt-4" role="alert">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="16px"
+                         height="16px"
+                         class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"
+                         viewBox="0 0 16 16"
+                         role="img"
+                         aria-label="Warning:"
+                    >
+                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                    </svg>
+                    <div>
+                        You can have only <b>one active tracker at the time</b>. If you have multiple active trackers, then last created tracker will be used for schedule.
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+
+        {% if records.lastPage > 1 %}
+            <ul class="pagination">
+                {% if records.currentPage > 1 %}
+                    <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage-1) }) }}">&larr;
+                            Prev</a></li>
+                {% endif %}
+
+                {% for page in 1..records.lastPage %}
+                    <li class="{{ records.currentPage == page ? 'active' : null }}">
+                        <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
+                    </li>
+                {% endfor %}
+
+                {% if records.lastPage > records.currentPage %}
+                    <li><a href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage+1) }) }}">Next
+                            &rarr;</a></li>
+                {% endif %}
+            </ul>
+        {% endif %}
+
+    </div>
+</div>
