@@ -1,74 +1,44 @@
-<p align="center">
-    <img src="https://github.com/octobercms/october/blob/develop/themes/demo/assets/images/favicon.png?raw=true" alt="October" width="25%" height="25%" />
-</p>
+# Time tracker - BambooHR timesheet on autopilot
 
-[October](https://octobercms.com) is a Content Management System (CMS) and web platform whose sole purpose is to make your development workflow simple again. It was born out of frustration with existing systems. We feel building websites has become a convoluted and confusing process that leaves developers unsatisfied. We want to turn you around to the simpler side and get back to basics.
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+   <img src="https://i.imgur.com/WtHZw62.png" alt="Time tracker">
+</div>
 
-October's mission is to show the world that web development is not rocket science.
 
-[![Build Status](https://github.com/octobercms/library/actions/workflows/tests.yml/badge.svg)](https://octobercms.com/)
-[![Downloads](https://img.shields.io/packagist/dt/october/rain)](https://docs.octobercms.com/)
-[![Version](https://img.shields.io/packagist/v/october/october)](https://octobercms.com/changelog)
-[![License](https://poser.pugx.org/october/october/license.svg)](./LICENSE.md)
 
-> *Please note*: October is open source but it is not free software. A license with a small fee is required for each website you build with October CMS.
+<!-- ABOUT THE PROJECT -->
+## 📝 About
 
-## Installing October
+Ditch the manual timesheets! This time tracker app automatically clocks you in and out of BambooHR on workdays, saving you time and ensuring your hours are seamlessly integrated with your HR system for effortless timesheet management.
 
-Instructions on how to install October can be found at the [installation guide](https://docs.octobercms.com/3.x/setup/installation.html).
 
-### Quick Start Installation
+### 🧰 Built With
 
-If you have composer installed, run this in your terminal to install October CMS from command line. This will place the files in a directory named **myoctober**.
+* [OctoberCMS](https://octobercms.com/)
+* [Laravel](https://laravel.com/)
+* [Bootstrap](https://getbootstrap.com)
 
-    composer create-project october/october myoctober
 
-If you plan on using a database, run this command inside the application directory.
+<!-- GETTING STARTED -->
+## 📚 Getting Started
 
-    php artisan october:install
 
-## Learning October
 
-The best place to learn October CMS is by [reading the documentation](https://docs.octobercms.com) or [following some tutorials](https://octobercms.com/support/articles/tutorials).
+### ℹ️ Prerequisites
 
-You may also watch this [introductory video](https://www.youtube.com/watch?v=yLZTOeOS7wI). Make sure to check out our [official YouTube channel](https://www.youtube.com/c/OctoberCMSOfficial). There is also the excellent video series by [Watch & Learn](https://watch-learn.com/series/making-websites-with-october-cms).
+You need to create API key in BambooHR settings and find your Employee ID
 
-For code examples of building with October CMS, visit the [RainLab Plugin Suite](https://github.com/rainlab) or the [October Demos Repo](https://github.com/octoberdemos).
+<!-- USAGE EXAMPLES -->
+## 🖱️ Usage
 
-## Coding Standards
+Get started by creating an account and signing in. Head to your profile and enter your unique API key and employee ID for seamless integration. Now, you can create a new tracker! Simply choose your desired clock-in time, lunch break start and end, and the app will automatically calculate your clock-out time based on an 8-hour workday. Remember to activate your schedule for automatic tracking!
 
-Please follow the following guides and code standards:
 
-* [PSR 4 Coding Standards](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md)
-* [PSR 2 Coding Style Guide](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)
-* [PSR 1 Coding Standards](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md)
 
-## Security Vulnerabilities
+<!-- Notes -->
+## ❗ Notes
 
-Please review [our security policy](https://github.com/octobercms/october/security/policy) on how to report security vulnerabilities.
-
-## Development Team
-
-October CMS was created by [Alexey Bobkov](https://www.linkedin.com/in/alexey-bobkov-232ba02b/) and [Samuel Georges](https://www.linkedin.com/in/samuel-georges-0a964131/), who both continue to develop the platform.
-
-## Foundation library
-
-The CMS uses [Laravel](https://laravel.com) as a foundation PHP framework.
-
-## Contact
-
-For announcements and updates:
-
-* [Contact Us Page](http://octoberdev.test/contact)
-* [Follow us on Twitter](https://twitter.com/octobercms)
-* [Like us on Facebook](https://facebook.com/octobercms)
-
-To chat or hang out:
-
-* [Join us on Slack](https://octobercms.slack.com)
-* [Join us on Discord](https://discord.gg/gEKgwSZ)
-* [Join us on Telegram](https://t.me/octoberchat)
-
-## License
-
-The October CMS platform is licensed software, see [End User License Agreement](./LICENSE.md) (EULA) for more details.
+- Tracker times can be set between 7:00 AM and 6:00 PM only. To ensure accurate tracking, the app won't run outside this timeframe.
+- Tracker is still in early stages of development, daily updates will be released
