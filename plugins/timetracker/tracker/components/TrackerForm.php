@@ -233,11 +233,6 @@ class TrackerForm extends ComponentBase
                             $trackerForm->onClockOut($apiKey, $employeeId,'Finished working');
                             echo "Finished working";
                         }
-                    } else { // Fallback if first calculation fails
-                        if (date("H:i") == date("H:i", strtotime($startTime . " +8 hours"))) {
-                            $trackerForm->onClockOut($apiKey, $employeeId,'Finished working');
-                            echo "Finished working";
-                        }
                     }
                 }
             }
