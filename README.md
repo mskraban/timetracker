@@ -1,4 +1,5 @@
 # Time tracker - BambooHR timesheet on autopilot
+For educational purposes only 😉
 
 <!-- PROJECT LOGO -->
 <br />
@@ -33,7 +34,7 @@ You need to create API key in BambooHR settings and find your Employee ID
 <!-- USAGE EXAMPLES -->
 ## 🖱️ Usage
 
-Get started by creating an account and signing in. Head to your profile and enter your unique API key and employee ID for seamless integration. Now, you can create a new tracker! Simply choose your desired clock-in time, lunch break start and end, and the app will automatically calculate your clock-out time based on an 8-hour workday. Remember to activate your schedule for automatic tracking!
+Get started by creating an account and signing in. Head to your profile and enter your unique **API key** and **employee ID** for seamless integration. Now, you can create a new tracker! Simply choose your desired clock-in time, lunch break start and end, and the app will automatically calculate your clock-out time based on an 8-hour workday. Remember to activate your schedule for automatic tracking!
 
 
 
