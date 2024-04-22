@@ -32,14 +32,15 @@ checkToken = 0
         {% set displayedRecords = 0 %}
         {% set activeTrackers = 0 %}
 
-        <table class="table table-responsive rounded overflow-hidden mt-4">
+        <div class="table-responsive">
+            <table class="table rounded overflow-hidden mt-4">
             <thead>
             <tr>
-                <th scope="col">Tracker ID</th>
-                <th scope="col">Created</th>
-                <th scope="col">Schedule type</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
+                <th scope="col" class="align-top">ID</th>
+                <th scope="col" class="align-top">Created</th>
+                <th scope="col" class="align-top">Schedule</th>
+                <th scope="col" class="align-top">Status</th>
+                <th scope="col" class="align-top">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -48,7 +49,7 @@ checkToken = 0
                     {% if detailsPage %}
                         <tr>
                             <th scope="row" class="align-middle">{{ attribute(record, displayColumn) }}</th>
-                            <td class="align-middle">{{ record.created_at }}</td>
+                            <td class="align-middle">{{ record.created_at | date ("d.m.Y") }}</td>
                             <td class="align-middle">
                                 {% if record.workday_start %}
                                     Fixed
@@ -72,7 +73,7 @@ checkToken = 0
             {% endfor %}
             </tbody>
         </table>
-
+        </div>
 
         {% if displayedRecords == 0 %}
             You have no trackers created yet. To display tracking list create a tracker first.

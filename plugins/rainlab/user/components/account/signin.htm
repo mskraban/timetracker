@@ -1,35 +1,33 @@
 {{ form_ajax('onSignin') }}
 
-<div class="icon d-flex justify-content-center mb-2">
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
-        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
-    </svg>
-</div>
+    <div class="form-group">
+        <label for="userSigninLogin">{{ loginAttributeLabel }}</label>
+        <input
+            name="login"
+            type="text"
+            class="form-control"
+            id="userSigninLogin"
+            placeholder="Enter your {{ loginAttributeLabel|lower }}" />
+    </div>
 
-<h1 class="h4 mb-4 fw-semibold text-center">Please login</h1>
+    <div class="form-group">
+        <label for="userSigninPassword">Password</label>
+        <input
+            name="password"
+            type="password"
+            class="form-control"
+            id="userSigninPassword"
+            placeholder="Enter your password" />
+    </div>
 
-<div class="form-floating mb-2">
-    <input
-        name="login"
-        type="text"
-        class="form-control"
-        id="floatingInput"
-        placeholder="Enter your {{ loginAttributeLabel|lower }}"
-    >
-    <label for="floatingInput">Username</label>
-</div>
-<div class="form-floating mb-4">
-    <input
-        name="password"
-        type="password"
-        class="form-control"
-        id="floatingPassword"
-        placeholder="Enter your password"
-    >
-    <label for="floatingPassword">Password</label>
-</div>
-<button class="btn btn-primary w-100 py-2" type="submit">Login</button>
-<p class="text-center mt-2">Don't have an account? Register <a href="{{ 'register'|page }}">here</a></p>
+    {% if rememberLoginMode == 'ask' %}
+    <div class="form-group">
+        <div class="checkbox">
+        <label><input name="remember" type="checkbox" value="1">Stay logged in</label>
+        </div>
+    </div>
+    {% endif %}
+
+    <button type="submit" class="btn btn-default">Sign in</button>
 
 {{ form_close() }}

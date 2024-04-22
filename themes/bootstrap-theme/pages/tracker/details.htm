@@ -28,8 +28,44 @@ checkToken = 0
         {% if record %}
 
         <form data-request="onUpdate" data-request-data="record: {{ record.id }}">
-             <div class="row mt-5 mb-3">
-                 <div class="col-4">
+             <div class="row mt-4 mb-3">
+                 <div class="col-12 col-md-4">
+                     <h2 class="h5 fw-semibold">Fixed schedule</h2>
+                     <div class="form-floating mb-2">
+                         <input
+                             name="workday_start"
+                             type="time"
+                             class="form-control"
+                             id="workday_start"
+                             placeholder="{{ record.workday_start }}"
+                             value="{{ record.workday_start }}"
+                         />
+                         <label for="workday_start">Clock in</label>
+                     </div>
+                     <div class="form-floating mb-2">
+                         <input
+                             name="workday_lunch_start"
+                             type="time"
+                             class="form-control"
+                             id="workday_lunch_start"
+                             placeholder="{{ record.workday_lunch_start }}"
+                             value="{{ record.workday_lunch_start }}"
+                         />
+                         <label for="workday_lunch_start">Lunch start</label>
+                     </div>
+                     <div class="form-floating mb-2">
+                         <input
+                             name="workday_lunch_end"
+                             type="time"
+                             class="form-control"
+                             id="workday_lunch_end"
+                             placeholder="{{ record.workday_lunch_end }}"
+                             value="{{ record.workday_lunch_end }}"
+                         />
+                         <label for="workday_lunch_end">Lunch end</label>
+                     </div>
+                 </div>
+                 <div class="col-12 col-md-4 offset-md-1 pointer-events-disabled opacity-75 d-none">
                      <h2 class="h5 fw-semibold">Randomized schedule</h2>
                      <div class="row">
                          <div class="col-6 pointer-events-disabled opacity-75">
@@ -117,42 +153,6 @@ checkToken = 0
                                  <label for="workday_lunch_end_max">Lunch end max</label>
                              </div>
                          </div>
-                     </div>
-                 </div>
-                 <div class="col-4 offset-1">
-                     <h2 class="h5 fw-semibold">Fixed schedule</h2>
-                     <div class="form-floating mb-2">
-                         <input
-                             name="workday_start"
-                             type="time"
-                             class="form-control"
-                             id="workday_start"
-                             placeholder="{{ record.workday_start }}"
-                             value="{{ record.workday_start }}"
-                         />
-                         <label for="workday_start">Clock in</label>
-                     </div>
-                     <div class="form-floating mb-2">
-                         <input
-                             name="workday_lunch_start"
-                             type="time"
-                             class="form-control"
-                             id="workday_lunch_start"
-                             placeholder="{{ record.workday_lunch_start }}"
-                             value="{{ record.workday_lunch_start }}"
-                         />
-                         <label for="workday_lunch_start">Lunch start</label>
-                     </div>
-                     <div class="form-floating mb-2">
-                         <input
-                             name="workday_lunch_end"
-                             type="time"
-                             class="form-control"
-                             id="workday_lunch_end"
-                             placeholder="{{ record.workday_lunch_end }}"
-                             value="{{ record.workday_lunch_end }}"
-                         />
-                         <label for="workday_lunch_end">Lunch end</label>
                      </div>
                  </div>
              </div>

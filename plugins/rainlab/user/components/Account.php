@@ -9,7 +9,6 @@ use Input;
 use System;
 use Request;
 use Redirect;
-use TimeTracker\Profile\Models\Profile;
 use Validator;
 use October\Rain\Auth\AuthException;
 use Cms\Classes\Page;
