@@ -198,12 +198,14 @@ class TrackerForm extends ComponentBase
 
                     if (date("H:i") == $activeTracker->workday_lunch_start) {
                         $trackerForm->onClockOut($apiKey, $employeeId,'Lunch break');
+                        sleep(10);
                         $trackerForm->onClockIn($apiKey, $employeeId,'Lunch break end');
                         echo "Lunch break";
                     }
 
                     if (date("H:i") == $activeTracker->workday_lunch_end) {
                         $trackerForm->onClockOut($apiKey, $employeeId,'Resumed working');
+                        sleep(10);
                         $trackerForm->onClockIn($apiKey, $employeeId,'Finished working');
                         echo "Resumed working";
                     }
