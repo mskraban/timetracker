@@ -203,7 +203,6 @@ checkToken = 0
 </div>
 
 {% set disabledDates = record.disabled_dates|split(",") %}
-"{{ disabledDates|join('", "')|replace({' ': ''})|raw }}"
 
 <script>
     function handleClick(checkbox) {
