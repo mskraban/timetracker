@@ -139,7 +139,7 @@ class TrackerForm extends ComponentBase
     {
         $dateTime = DateTime::createFromFormat('H:i:s', $time);
         $dateTime->add(new DateInterval('PT' . $minutes . 'M'));
-        return $dateTime->format('H:i');
+        return $dateTime->format('H:i:s');
     }
 
      function has_current_date($dates): bool
@@ -202,23 +202,23 @@ class TrackerForm extends ComponentBase
                     echo "<br>";
                     echo $employeeId;
                     echo "<br>";
-                    echo date("H:i");
+                    echo date("H:i:s");
                     echo "<br>";
                     echo $activeTracker->workday_start;
 
-                    if (date("H:i") == $activeTracker->workday_start) {
+                    if (date("H:i:s") == $activeTracker->workday_start) {
                         $trackerForm->onClockIn($apiKey, $employeeId, 'Started working');
                         echo "Started working";
                     }
 
-                    if (date("H:i") == $activeTracker->workday_lunch_start) {
+                    if (date("H:i:s") == $activeTracker->workday_lunch_start) {
                         $trackerForm->onClockOut($apiKey, $employeeId,'Lunch break');
                         sleep(10);
                         $trackerForm->onClockIn($apiKey, $employeeId,'Lunch break end');
                         echo "Lunch break";
                     }
 
-                    if (date("H:i") == $activeTracker->workday_lunch_end) {
+                    if (date("H:i:s") == $activeTracker->workday_lunch_end) {
                         $trackerForm->onClockOut($apiKey, $employeeId,'Resumed working');
                         sleep(10);
                         $trackerForm->onClockIn($apiKey, $employeeId,'Finished working');
@@ -248,11 +248,13 @@ class TrackerForm extends ComponentBase
                     // Check if calculated time matches 8 hours
                     $calculatedHoursDiff = $this->differenceInHours( $activeTracker->workday_start, $workdayEndTime);
                     if ($calculatedHoursDiff == $workdayHoursTotal) {
-                        if (date("H:i") == $workdayEndTime) {
+                        if (date("H:i:s") == $workdayEndTime) {
                             $trackerForm->onClockOut($apiKey, $employeeId,'Finished working');
                             echo "Finished working";
                         }
                     }
+
+                    echo $workdayEndTime;
                 }
             }
         }
