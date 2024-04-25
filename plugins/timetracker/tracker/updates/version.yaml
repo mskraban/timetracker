@@ -54,3 +54,9 @@ v1.0.18:
 v1.0.19:
     - 'Updated table timetracker_tracker_'
     - builder_table_update_timetracker_tracker__14.php
+v1.0.20:
+    - 'Updated table timetracker_tracker_'
+    - builder_table_update_timetracker_tracker__15.php
+v1.0.21:
+    - 'Updated table timetracker_tracker_'
+    - builder_table_update_timetracker_tracker__16.php

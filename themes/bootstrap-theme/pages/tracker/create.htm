@@ -51,6 +51,24 @@ checkToken = 0
                          />
                          <label for="workday_lunch_end">Lunch end</label>
                      </div>
+                     <div class="form-floating mb-2">
+                         <input type="text"
+                                class="form-control"
+                                id="datePicker"
+                                name="disabled_dates"
+                                placeholder="{{ record.disabled_dates }}"
+                                value="{{ record.disabled_dates }}"
+                         />
+                         <label for="datePicker">Disabled dates</label>
+                     </div>
+                     <div class="alert alert-primary alert-dismissible fade show d-flex align-items-center" role="alert">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle me-3" viewBox="0 0 16 16">
+                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                             <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                         </svg>
+                         Tracker will not run on the selected dates.
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>
                  </div>
                  <div class="col-12 col-md-4 offset-md-1 pointer-events-disabled opacity-75">
                      <h2 class="h5 fw-semibold">Randomized schedule (coming soon)</h2>
@@ -172,4 +190,26 @@ checkToken = 0
         checkbox.checked = checkbox.checked ? 1 : 0;
         document.getElementById('switchValue').value = checkbox.checked ? 1 : 0;
     }
+</script>
+
+<script type="module">
+    import AirDatepicker from 'https://cdn.jsdelivr.net/npm/air-datepicker@3.5.0/+esm'
+    const localeEn = {
+        days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        daysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        daysMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+        months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        today: 'Today',
+        clear: 'Clear',
+        dateFormat: 'MM/dd/yyyy',
+        timeFormat: 'hh:mm aa',
+        firstDay: 0
+    }
+
+    new AirDatepicker('#datePicker', {
+        locale: localeEn,
+        multipleDates: true,
+        selectedDates: []
+    })
 </script>

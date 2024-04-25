@@ -39,6 +39,7 @@ class Tracker extends Model
         'workday_start',
         'workday_lunch_start',
         'workday_lunch_end',
-        'active'
+        'active',
+        'disabled_dates'
     ];
 }

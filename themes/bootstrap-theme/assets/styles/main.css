@@ -1,0 +1,11 @@
+.form-control {
+    position: relative;
+}
+
+input[type='time']::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    opacity: 0.7;
+}

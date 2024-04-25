@@ -2,6 +2,7 @@ columns:
     id:
         label: 'Entry ID'
         type: number
+        sortable: true
     created_at:
         label: 'Created at'
         type: datetime
@@ -16,3 +17,8 @@ columns:
         searchable: true
         relation: tracker_id
         select: id
+    disabled_dates:
+        label: 'Disabled dates'
+        type: text
+        searchable: true
+        sortable: true

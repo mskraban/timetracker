@@ -5,6 +5,7 @@ use DateTime;
 use DateInterval;
 use Db;
 use Input;
+use InvalidArgumentException;
 use RainLab\User\Models\User;
 use Validator;
 use Redirect;
@@ -136,9 +137,15 @@ class TrackerForm extends ComponentBase
 
     function add_minutes($time, $minutes): string
     {
-        $dateTime = DateTime::createFromFormat('H:i', $time);
+        $dateTime = DateTime::createFromFormat('H:i:s', $time);
         $dateTime->add(new DateInterval('PT' . $minutes . 'M'));
         return $dateTime->format('H:i');
+    }
+
+     function has_current_date($dates): bool
+     {
+        $currentDate = date('m/d/Y');
+        return in_array($currentDate, $dates);
     }
 
     public function onGetAllUsersClockIns()
@@ -181,6 +188,14 @@ class TrackerForm extends ComponentBase
                         return;
                     }
 
+                    $disabledDatesString = $activeTracker->disabled_dates;
+                    $disabledDates = explode(',', $disabledDatesString);
+
+                    if ($trackerForm->has_current_date($disabledDates)) {
+                      return;
+                    }
+
+                    echo "<br>";
                     echo $trackerId;
                     echo "<br>";
                     echo $apiKey;
