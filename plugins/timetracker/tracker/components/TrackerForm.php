@@ -116,6 +116,23 @@ class TrackerForm extends ComponentBase
         echo $response->getBody();
     }
 
+    public function getTimeOff($apiKey, $employeeId, $date)
+    {
+        require_once('vendor/autoload.php');
+
+        $client = new \GuzzleHttp\Client();
+        $encodedApiKey = base64_encode($apiKey . ':');
+
+        $response = $client->request('GET', "https://api.bamboohr.com/api/gateway.php/flaviar/v1/time_off/requests/?action=view&employeeId=$employeeId&start=$date&end=$date&status=approved", [
+            'headers' => [
+                'Accept' => 'application/json',
+                'authorization' => "Basic ". $encodedApiKey
+            ],
+        ]);
+
+        return json_decode($response->getBody(), true);
+    }
+
     public function getTimeDifference($startTime, $endTime): float|int
     {
         $interval = date_diff($startTime, $endTime);
@@ -201,19 +218,25 @@ class TrackerForm extends ComponentBase
                       return;
                     }
 
-                    echo "<br>";
-                    echo $trackerId;
-                    echo "<br>";
-                    echo $apiKey;
-                    echo "<br>";
-                    echo $employeeId;
-                    echo "<br>";
-                    echo date("H:i");
-                    echo "<br>";
-                    echo "<br>";
+                    echo "Tracker ID: $trackerId<br>";
+                    echo "API key: $apiKey<br>";
+                    echo "Employee ID: $employeeId<br>";
+                    echo date("H:i")."<br>";
+                    echo date("Y-m-d")."<br>";
                     echo "<br>";
                     echo "<br>";
 
+                    $timeOffData = $this->getTimeOff($apiKey, $employeeId, date("Y-m-d"));
+
+                    if ($timeOffData) {
+                        foreach ($timeOffData as $item) {
+                            foreach ($item["dates"] as $date => $value) {
+                                if ($date == date("Y-m-d")) {
+                                    return;
+                                }
+                            }
+                        }
+                    }
 
                     $workdayStart = $trackerForm->convertTimeWithDateTime($activeTracker->workday_start);
                     $workdayLunchStart = $trackerForm->convertTimeWithDateTime($activeTracker->workday_lunch_start);
