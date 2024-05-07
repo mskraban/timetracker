@@ -159,10 +159,16 @@ class TrackerForm extends ComponentBase
         return $dateTime->format('H:i');
     }
 
-     function has_current_date($dates): bool
-     {
-        $currentDate = date('m/d/Y');
-        return in_array($currentDate, $dates);
+    function has_current_date($dates): bool
+    {
+        $currentDate = strtotime(date('Y-m-d')); // Convert current date to a timestamp
+        foreach ($dates as $dateString) {
+            $dateTimestamp = strtotime($dateString);
+            if ($currentDate === $dateTimestamp) {
+                return true;
+            }
+        }
+        return false;
     }
 
     function convertTimeWithDateTime($dateTimeString) {
@@ -224,6 +230,8 @@ class TrackerForm extends ComponentBase
                     echo date("H:i")."<br>";
                     echo date("Y-m-d")."<br>";
                     echo "<br>";
+                    echo "<br>";
+                    echo $disabledDatesString;
                     echo "<br>";
 
                     $timeOffData = $this->getTimeOff($apiKey, $employeeId, date("Y-m-d"));
